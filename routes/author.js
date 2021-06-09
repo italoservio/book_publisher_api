@@ -1,8 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-router.get('/', function(req, res, next) {
-  res.send('Livros');
-});
+const authorController = require('../controllers/authorController');
+
+router.get('/', authorController.all);
+router.post('/', authorController.new);
+router.get('/:id', authorController.one);
+router.delete('/:id', authorController.remove);
+router.patch('/:id', authorController.change);
 
 module.exports = router;

@@ -6,7 +6,6 @@ var logger = require('morgan');
 var authorRouter = require('./routes/author');
 var genreRouter = require('./routes/genre');
 var bookRouter = require('./routes/book');
-var indexRouter = require('./routes/index');
 var instanceRouter = require('./routes/instance');
 
 var app = express();
@@ -16,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
 app.use('/author', authorRouter);
 app.use('/book', bookRouter)
 app.use('/instance', instanceRouter)
