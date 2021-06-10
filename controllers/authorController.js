@@ -1,6 +1,6 @@
 const yup = require('yup');
 const helper = require('../services/helper');
-const Author = require('../models/author');
+const { Author } = require('../models/associations');
 
 const authorController = {
 

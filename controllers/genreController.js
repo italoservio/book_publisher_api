@@ -1,5 +1,5 @@
 const yup = require('yup');
-const Genre = require('../models/genre');
+const { Genre } = require('../models/associations');
 
 const genreController = {
 
