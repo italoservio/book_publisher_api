@@ -75,7 +75,7 @@ const authorController = {
       try {
         if (valid) {
           const id = req.body.id;
-          obj = {};
+          let obj = {};
           if (!helper.empty(req.body.firstName)) obj.firstName = req.body.firstName;
           if (!helper.empty(req.body.familyName)) obj.familyName = req.body.familyName;
           if (!helper.empty(req.body.dateOfBirth)) obj.dateOfBirth = req.body.dateOfBirth;

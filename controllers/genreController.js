@@ -37,7 +37,7 @@ const genreController = {
     .then(async (valid) => {
       if (valid) {
         const name = req.body.name;
-        genre = await Genre.create({ name });
+        const genre = await Genre.create({ name });
         r = {
           status: 201,
           message: 'Genre created successfully',
@@ -84,7 +84,7 @@ const genreController = {
     let r = {};
     try {
       const id = req.params.id;
-      let genre = await Genre.findByPk(id);
+      const genre = await Genre.findByPk(id);
       if (genre !== null) {
         await Genre.destroy({ where: { id }, force: true });
         r = {

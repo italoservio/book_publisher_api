@@ -37,7 +37,7 @@ const statusController = {
     .then(async (valid) => {
       if (valid) {
         const description = req.body.description;
-        status = await Status.create({ description });
+        const status = await Status.create({ description });
         r = {
           status: 201,
           message: 'Status created successfully',
@@ -84,7 +84,7 @@ const statusController = {
     let r = {};
     try {
       const id = req.params.id;
-      let status = await Status.findByPk(id);
+      const status = await Status.findByPk(id);
       if (status !== null) {
         await Status.destroy({ where: { id }, force: true });
         r = {

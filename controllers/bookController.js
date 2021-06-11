@@ -89,8 +89,9 @@ const bookController = {
           }, { transaction });
 
           // Creating bookGenres:
+          let genre = null;
           for (const g of req.body.genres) {
-            let genre = await Genre.findByPk(g);
+            genre = await Genre.findByPk(g);
             if (genre !== null) {
               await BookGenre.create({
                 bookId: book.id,
@@ -101,8 +102,9 @@ const bookController = {
           }
 
           // Creating bookAuthors:
+          let author = null;
           for (const a of req.body.authors) {
-            let author = await Author.findByPk(a);
+            author = await Author.findByPk(a);
             if (author !== null) {
               await BookAuthor.create({
                 bookId: book.id,
