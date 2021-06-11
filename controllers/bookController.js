@@ -142,8 +142,39 @@ const bookController = {
 
   },
 
-  remove(req, res) {
+  async remove(req, res) {
+    let r = {};
+    const transaction = await sequelize.transaction();
+    try {
+      const id = req.params.id;
+      let book = await Book.findByPk(id);
+      if (book !== null) {
+        const bookGenres = await BookGenre.findAll({ where: { bookId: id } });
+        const bookAuthors = await BookAuthor.findAll({ where: { bookId: id } });
 
+        for (const bk of bookGenres) {
+          await BookGenre.destroy({ where: { id: bk.id }, force: true });
+        }
+
+        for (const ba of bookAuthors) {
+          await BookAuthor.destroy({ where: { id: ba.id }, force: true });
+        }
+
+        await Book.destroy({ where: { id }, force: true });
+        await transaction.commit();
+        r = {
+          status: 200,
+          message: 'Book deleted successfully'
+        };
+      } else throw 'Invalid key';
+    } catch (e) {
+      await transaction.rollback();
+      r = {
+        status: 422,
+        message: 'Nothing to delete. ' + e
+      };
+    }
+    res.status(r.status).json(r);
   }
 
 }
