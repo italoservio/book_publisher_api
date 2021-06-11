@@ -10,12 +10,56 @@ const {
 
 const bookController = {
 
-  all() {
-
+  async all(req, res) {
+    const books = await Book.findAll({
+      include: [
+        {
+          model: BookGenre,
+          attributes: ['id'],
+          include: [{ model: Genre }]
+        },
+        {
+          model: BookAuthor,
+          attributes: ['id'],
+          include: [{ model: Author }]
+        }
+      ]
+    });
+    res.status(200).json({
+      status: 200,
+      books
+    });
   },
 
-  one() {
-
+  async one(req, res) {
+    let r = {};
+    const book = await Book.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: BookGenre,
+          attributes: ['id'],
+          include: [{ model: Genre }]
+        },
+        {
+          model: BookAuthor,
+          attributes: ['id'],
+          include: [{ model: Author }]
+        }
+      ]
+    });
+    if (book !== null) {
+      r = {
+        status: 200,
+        book
+      }
+    } else {
+      r = {
+        status: 422,
+        message: 'Nothing to get. Invalid key'
+      }
+    }
+    res.status(r.status).json(r);
   },
 
   new(req, res) {
@@ -94,11 +138,11 @@ const bookController = {
     });
   },
 
-  change() {
+  change(req, res) {
 
   },
 
-  remove() {
+  remove(req, res) {
 
   }
 
