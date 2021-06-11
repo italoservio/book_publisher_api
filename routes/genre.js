@@ -7,6 +7,6 @@ router.get('/', genreController.all);
 router.post('/', genreController.new);
 router.get('/:id', genreController.one);
 router.delete('/:id', genreController.remove);
-router.patch('/:id', genreController.change);
+router.patch('/', genreController.change);
 
 module.exports = router;

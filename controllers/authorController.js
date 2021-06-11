@@ -85,7 +85,7 @@ const authorController = {
 
           let author = await Author.findByPk(id);
           if (author !== null) {
-            await author.update(obj, { where: { id } });
+            await Author.update(obj, { where: { id } });
             r = {
               status: 200,
               message: 'Author edited successfully',

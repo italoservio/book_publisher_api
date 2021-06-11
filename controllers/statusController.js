@@ -13,7 +13,7 @@ const statusController = {
 
   async one(req, res) {
     let r = {};
-    const status = await status.findByPk(req.params.id);
+    const status = await Status.findByPk(req.params.id);
     if (status !== null) {
       r = {
         status: 200,
@@ -61,19 +61,25 @@ const statusController = {
     });
     schema.isValid(req.body)
     .then(async (valid) => {
-      if (valid) {
-        await Status.update(
-          { description: req.body.description },
-          { where: { id: req.body.id }
-        });
-        r = {
-          status: 201,
-          message: 'Status updated successfully'
-        };
-      } else {
+      try {
+        if (valid) {
+          const id = req.body.id;
+          let status = await Genre.findByPk(id);
+          if (status !== null) {
+            await Status.update(
+              { description: req.body.description },
+              { where: { id }
+            });
+            r = {
+              status: 201,
+              message: 'Status updated successfully'
+            };
+          } else throw 'Nothing to edit. Invalid key';
+        } else throw 'Invalid object';
+      } catch (e) {
         r = {
           status: 422,
-          message: 'Invalid object'
+          message: e
         };
       }
       res.status(r.status).json(r);

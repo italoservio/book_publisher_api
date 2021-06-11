@@ -61,19 +61,25 @@ const genreController = {
     });
     schema.isValid(req.body)
     .then(async (valid) => {
-      if (valid) {
-        await Genre.update(
-          { name: req.body.name },
-          { where: { id: req.body.id }
-        });
-        r = {
-          status: 201,
-          message: 'Genre updated successfully'
-        };
-      } else {
+      try {
+        if (valid) {
+          const id = req.body.id;
+          let genre = await Genre.findByPk(id);
+          if (genre !== null) {
+            await Genre.update(
+              { name: req.body.name },
+              { where: { id }
+            });
+            r = {
+              status: 201,
+              message: 'Genre updated successfully'
+            };
+          } else throw 'Nothing to edit. Invalid key';
+        } else throw 'Invalid object';
+      } catch (e) {
         r = {
           status: 422,
-          message: 'Invalid object'
+          message: e
         };
       }
       res.status(r.status).json(r);

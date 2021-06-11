@@ -7,6 +7,6 @@ router.get('/', statusController.all);
 router.post('/', statusController.new);
 router.get('/:id', statusController.one);
 router.delete('/:id', statusController.remove);
-router.patch('/:id', statusController.change);
+router.patch('/', statusController.change);
 
 module.exports = router;

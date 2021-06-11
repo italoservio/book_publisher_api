@@ -7,6 +7,6 @@ router.get('/', instanceController.all);
 router.post('/', instanceController.new);
 router.get('/:id', instanceController.one);
 router.delete('/:id', instanceController.remove);
-router.patch('/:id', instanceController.change);
+router.patch('/', instanceController.change);
 
 module.exports = router;

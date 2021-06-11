@@ -7,6 +7,6 @@ router.get('/', bookController.all);
 router.post('/', bookController.new);
 router.get('/:id', bookController.one);
 router.delete('/:id', bookController.remove);
-router.patch('/:id', bookController.change);
+router.patch('/', bookController.change);
 
 module.exports = router;
