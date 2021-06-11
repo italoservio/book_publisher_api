@@ -66,13 +66,11 @@ const genreController = {
           const id = req.body.id;
           let genre = await Genre.findByPk(id);
           if (genre !== null) {
-            await Genre.update(
-              { name: req.body.name },
-              { where: { id }
-            });
+            await genre.update({ name: req.body.name });
             r = {
               status: 201,
-              message: 'Genre updated successfully'
+              message: 'Genre updated successfully',
+              genre
             };
           } else throw 'Nothing to edit. Invalid key';
         } else throw 'Invalid object';

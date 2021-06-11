@@ -64,15 +64,13 @@ const statusController = {
       try {
         if (valid) {
           const id = req.body.id;
-          let status = await Genre.findByPk(id);
+          let status = await Status.findByPk(id);
           if (status !== null) {
-            await Status.update(
-              { description: req.body.description },
-              { where: { id }
-            });
+            await status.update({ description: req.body.description });
             r = {
               status: 201,
-              message: 'Status updated successfully'
+              message: 'Status updated successfully',
+              data: status
             };
           } else throw 'Nothing to edit. Invalid key';
         } else throw 'Invalid object';
