@@ -54,7 +54,7 @@ const authorController = {
               author
             };
           } else throw 'Invalid date format';
-        } else throw 'Invalid object'
+        } else throw 'Invalid object';
       } catch (e) {
         r = {
           status: 422,
@@ -83,6 +83,18 @@ const authorController = {
           if (!helper.empty(req.body.name)) obj.name = req.body.name;
           if (!helper.empty(req.body.lifespan)) obj.lifespan = req.body.lifespan;
 
+          // Valid dateOfBirth?
+          if (
+            !helper.empty(req.body.dateOfBirth) &&
+            !helper.validDate(req.body.dateOfBirth)
+          ) throw 'Invalid date format';
+
+          // Valid dateOfDeath?
+          if (
+            !helper.empty(req.body.dateOfDeath) &&
+            !helper.validDate(req.body.dateOfDeath)
+          ) throw 'Invalid date format';
+
           let author = await Author.findByPk(id);
           if (author !== null) {
             await author.update(obj);
@@ -91,8 +103,8 @@ const authorController = {
               message: 'Author edited successfully',
               author
             };
-          } else throw 'Nothing to edit. Invalid key'
-        } else throw 'Invalid object'
+          } else throw 'Nothing to edit. Invalid key';
+        } else throw 'Invalid object';
       } catch (e) {
         r = {
           status: 422,

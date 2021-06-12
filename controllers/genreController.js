@@ -88,9 +88,9 @@ const genreController = {
     let r = {};
     try {
       const id = req.params.id;
-      const genre = await Genre.findByPk(id);
+      let genre = await Genre.findByPk(id);
       if (genre !== null) {
-        await Genre.destroy({ where: { id }, force: true });
+        await genre.destroy({ force: true });
         r = {
           status: 200,
           message: 'Genre deleted successfully'

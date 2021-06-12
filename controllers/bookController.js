@@ -98,7 +98,7 @@ const bookController = {
                 genreId: g
               }, { transaction });
               bookGenres.push(genre);
-            } else throw `Invalid genre key: "${g}"`;
+            } else throw `Invalid genre key: ${g}`;
           }
 
           // Creating bookAuthors:
@@ -111,7 +111,7 @@ const bookController = {
                 authorId: a
               }, { transaction });
               bookAuthors.push(author);
-            } else throw `Invalid author key: "${g}"`;
+            } else throw `Invalid author key: ${a}`;
           }
 
           await transaction.commit();
@@ -154,15 +154,15 @@ const bookController = {
         const bookGenres = await BookGenre.findAll({ where: { bookId: id } });
         const bookAuthors = await BookAuthor.findAll({ where: { bookId: id } });
 
-        for (const bk of bookGenres) {
-          await BookGenre.destroy({ where: { id: bk.id }, force: true });
+        for (let bookGenre of bookGenres) {
+          await bookGenre.destroy({ force: true });
         }
 
-        for (const ba of bookAuthors) {
-          await BookAuthor.destroy({ where: { id: ba.id }, force: true });
+        for (let bookAuthor of bookAuthors) {
+          await bookAuthor.destroy({ force: true });
         }
 
-        await Book.destroy({ where: { id }, force: true });
+        await book.destroy({ force: true });
         await transaction.commit();
         r = {
           status: 200,

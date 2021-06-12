@@ -88,9 +88,9 @@ const statusController = {
     let r = {};
     try {
       const id = req.params.id;
-      const status = await Status.findByPk(id);
+      let status = await Status.findByPk(id);
       if (status !== null) {
-        await Status.destroy({ where: { id }, force: true });
+        await status.destroy({ force: true });
         r = {
           status: 200,
           message: 'Status deleted successfully'
