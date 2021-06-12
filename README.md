@@ -32,7 +32,7 @@ This is an academic work aimed at developing a RESTful API for a book publisher.
 <p align="center">
 <b><i>A POSTMAN COLLECTION IS INCLUDED IN THE PROJECT</i></b>. So, you can import this collection and have fun. <br />
 In all routes of type "Patch" all parameters are optional, except the "id". <br/>
-</p
+</p>
 
 <br />
 	
@@ -53,7 +53,6 @@ In all routes of type "Patch" all parameters are optional, except the "id". <br/
   <img alt="ERD" src="https://i.imgur.com/V7vrvNo.png" />
 </h1>
 
-<br />
 <br />
 
 <h3 align="center">🎨 Contributor(s)</h4>
