@@ -30,10 +30,30 @@ This is an academic work aimed at developing a RESTful API for a book publisher.
 
 <h3 align="center">🧠 Understanding</h3>
 <p align="center">
-A <b><i>POSTMAN COLLECTION IS INCLUDED IN THE PROJECT</i></b>. So, you can import this collection and have fun. <br />
+<b><i>A POSTMAN COLLECTION IS INCLUDED IN THE PROJECT</i></b>. So, you can import this collection and have fun. <br />
 In all routes of type "Patch" all parameters are optional, except the "id". <br/>
 </p
 
+<br />
+	
+<h3 align="center">👁 Routes overview</h3>
+<pre>
+  // Book routes
+  router.get('/', bookController.all);
+  router.post('/', bookController.new);
+  router.get('/:id', bookController.one);
+  router.delete('/:id', bookController.remove);
+  router.patch('/', bookController.change);
+</pre>
+
+<br />
+<h3 align="center">🏛 ERD</h3>
+<p align="center">The complete database structure:</p>
+<h1 align="center">
+  <img alt="ERD" src="https://i.imgur.com/V7vrvNo.png" />
+</h1>
+
+<br />
 <br />
 
 <h3 align="center">🎨 Contributor(s)</h4>
