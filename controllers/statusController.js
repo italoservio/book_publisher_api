@@ -55,11 +55,13 @@ const statusController = {
 
   async change(req, res) {
     let r = {};
-    let schema = yup.object().shape({
-      id: yup.number().required().positive().integer(),
+
+    const schema = yup.object().shape({
+      id: yup.number().positive().integer().required(),
       description: yup.string().required()
     });
-    schema.isValid(req.body)
+
+    await schema.isValid(req.body)
     .then(async (valid) => {
       try {
         if (valid) {

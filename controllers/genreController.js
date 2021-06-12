@@ -55,11 +55,13 @@ const genreController = {
 
   async change(req, res) {
     let r = {};
-    let schema = yup.object().shape({
-      id: yup.number().required().positive().integer(),
+
+    const schema = yup.object().shape({
+      id: yup.number().positive().integer().required(),
       name: yup.string().required()
     });
-    schema.isValid(req.body)
+
+    await schema.isValid(req.body)
     .then(async (valid) => {
       try {
         if (valid) {
@@ -84,6 +86,7 @@ const genreController = {
     });
   },
 
+  // To DO: Delete all BookGenres
   async remove(req, res) {
     let r = {};
     try {

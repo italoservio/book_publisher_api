@@ -81,10 +81,12 @@ const instanceController = {
 
   async change(req, res) {
     let r = {};
+
     const schema = yup.object().shape({
       id: yup.number().positive().integer().required()
     });
-    schema.isValid(req.body)
+
+    await schema.isValid(req.body)
     .then(async (valid) => {
       try {
         if (valid) {
@@ -111,7 +113,7 @@ const instanceController = {
             await instance.update(obj);
             r = {
               status: 201,
-              message: 'Instace created successfully',
+              message: 'Instace updated successfully',
               instance
             };
           } else throw 'Nothing to edit. Invalid key';

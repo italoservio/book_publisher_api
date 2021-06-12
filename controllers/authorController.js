@@ -67,10 +67,12 @@ const authorController = {
 
   async change(req, res) {
     let r = {};
+
     const schema = yup.object().shape({
       id: yup.number().positive().integer().required(),
     });
-    schema.isValid(req.body)
+
+    await schema.isValid(req.body)
     .then(async (valid) => {
       try {
         if (valid) {
@@ -100,7 +102,7 @@ const authorController = {
             await author.update(obj);
             r = {
               status: 200,
-              message: 'Author edited successfully',
+              message: 'Author updated successfully',
               author
             };
           } else throw 'Nothing to edit. Invalid key';
@@ -115,6 +117,7 @@ const authorController = {
     });
   },
 
+  // To DO: Delete all BookAuthors
   async remove(req, res) {
     let r = {};
     try {

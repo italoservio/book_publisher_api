@@ -6,7 +6,8 @@ const {
   BookGenre,
   BookAuthor,
   Genre,
-  Author } = require('../models/associations');
+  Author
+} = require('../models/associations');
 
 const bookController = {
 
@@ -140,8 +141,113 @@ const bookController = {
     });
   },
 
-  change(req, res) {
+  async change(req, res) {
+    let r = {};
 
+    const schema = yup.object().shape({
+      id: yup.number().positive().integer().required()
+    });
+
+    await schema.isValid(req.body)
+    .then(async (valid) => {
+      const transaction = await sequelize.transaction();
+      try {
+        if (valid) {
+
+          const id = req.body.id;
+          let obj = {};
+
+          if (!helper.empty(req.body.title)) obj.title = req.body.title;
+          if (!helper.empty(req.body.summary)) obj.summary = req.body.summary;
+          if (!helper.empty(req.body.isbn)) obj.isbn = req.body.isbn;
+
+          let book = await Book.findByPk(id);
+          if (book !== null) {
+
+            await book.update(obj);
+
+            // Deleting previous bookGenres and creating new bookAuthors:
+            if (!helper.empty(req.body.authors)) {
+              if (req.body.authors instanceof Array) {
+                let firstAuthor = true;
+                let author = null;
+                for (const a of req.body.authors) {
+                  author = Author.findByPk(a);
+                  if (author === null) throw `Invalid author key: ${a}`;
+
+                  if (firstAuthor) {
+                    firstAuthor = false;
+                    let actualBookAuthors = await BookAuthor.findAll({ where: { bookId: id } });
+                    for (let bookAuthor of actualBookAuthors) await bookAuthor.destroy({ force: true });
+                  }
+                  await BookAuthor.create({
+                    bookId: id,
+                    authorId: a
+                  }, { transaction });
+                }
+              } else throw 'Authors isn\'t an array';
+            }
+
+            // Deleting previous bookGenres and creating new bookGenres:
+            if (!helper.empty(req.body.genres)) {
+              if (req.body.genres instanceof Array) {
+                let firstGenre = true;
+                let genre = null;
+                for (const g of req.body.genres) {
+                  genre = Genre.findByPk(g);
+                  if (genre === null) throw `Invalid genre key: ${g}`;
+
+                  if (firstGenre) {
+                    firstGenre = false;
+                    let actualBookGenres = await BookGenre.findAll({ where: { bookId: id } });
+                    for (let bookGenre of actualBookGenres) await bookGenre.destroy({ force: true });
+                  }
+                  await BookGenre.create({
+                    bookId: id,
+                    genreId: g
+                  }, { transaction });
+                }
+              } else throw 'Genres isn\'t an array';
+            }
+
+            await transaction.commit();
+
+            //  Getting existent book authors
+            let newBookAuthors = await BookAuthor.findAll({
+              where: { bookId: id },
+              attributes: ['id'],
+              include: [{ model: Author }]
+            });
+
+            let newBookGenres = await BookGenre.findAll({
+              where: { bookId: id },
+              attributes: ['id'],
+              include: [{ model: Genre }]
+            });
+
+            r = {
+              status: 200,
+              message: 'Book updated successfully',
+              book: {
+                id: book.id,
+                title: book.title,
+                summary: book.summary,
+                isbn: book.isbn,
+                genres: newBookGenres,
+                authors: newBookAuthors
+              }
+            };
+          } else throw 'Nothing to edit. Invalid key';
+        } else 'Invalid object'
+      } catch (e) {
+        await transaction.rollback();
+        r = {
+          status: 422,
+          message: e
+        };
+      }
+    });
+    res.json(r);
   },
 
   async remove(req, res) {
