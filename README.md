@@ -30,7 +30,7 @@ This is an academic work aimed at developing a RESTful API for a book publisher.
 
 <h3 align="center">🧠 Understanding</h3>
 <p align="center">
-A Postman collection is included in the project. So, you can import this collection and have fun. <br />
+A <b><i>POSTMAN COLLECTION IS INCLUDED IN THE PROJECT</i></b>. So, you can import this collection and have fun. <br />
 In all routes of type "Patch" all parameters are optional, except the "id". <br/>
 </p
 
