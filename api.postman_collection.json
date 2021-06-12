@@ -1,0 +1,571 @@
+{
+	"info": {
+		"_postman_id": "c3ec02dc-a3d2-461b-94ae-15d1d9a3cda1",
+		"name": "book_publisher_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "genre",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/genre",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/genre/2",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"genre",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/genre/7",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"genre",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Terror\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/genre",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ÍTALO SÉRVIO CARVALHO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/genre",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"genre"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "author",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/author",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/author/13",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"author",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/author/16",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"author",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 13,\r\n    \"familyName\": \"Sérvio\",\r\n    \"dateOfBirth\": \"1999-01-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/author/13",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"author",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Ítalo\",\r\n    \"familyName\": \"Sérvio\",\r\n    \"dateOfBirth\": \"1999-01-11\",\r\n    \"dateOfDeath\": \"\",\r\n    \"name\": \"Ítalo Sérvio\",\r\n    \"lifespan\": 22\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/author",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/book",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/book/1",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"book",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/book/5",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"book",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Terceiro livro\",\r\n    \"summary\": \"Uma breve descrição para o segundo livro\",\r\n    \"isbn\": 10973246,\r\n    \"genres\": [3,4],\r\n    \"authors\": [13]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:500/book",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "500",
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"title\": \"Primeiro livro\",\r\n    \"summary\": \"Uma descrição real qualquer para o primeiro livro\",\r\n    \"genres\": [ 1, 2 ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/book",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "status",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/status",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/status/1",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"status",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/status/9",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"status",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 7,\r\n    \"description\": \"Em negociação\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/status",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Em negociação Extra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/status",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "instance",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/instance",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"instance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/instance/1",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"instance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE}}/instance/2",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"instance",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"2\",\r\n    \"dueDate\": \"2021-07-16\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/instance",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"instance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\": 2,\r\n    \"statusId\": 7,\r\n    \"dueDate\": \"2021-07-15\",\r\n    \"imprint\": \"Edição 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE}}/instance",
+							"host": [
+								"{{BASE}}"
+							],
+							"path": [
+								"instance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE",
+			"value": "localhost:5000"
+		}
+	]
+}
